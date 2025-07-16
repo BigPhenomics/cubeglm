@@ -22,7 +22,8 @@ def read_fit_spectra(spectra_path, wavelengths, plot=False, spectra_noise_thresh
     ...
     :return: A pandas DataFrame with one column for wavelength and another for signal intensity
     """
-    numpy2ri.activate()
+    # numpy2ri.activate() removed - deprecated in newer rpy2 versions
+    # pandas2ri.converter in localconverter below handles conversions
 
     pub_emission_spectrum = pd.read_csv(spectra_path)
     pub_emission_spectrum = pub_emission_spectrum.rename(columns={'emission wavelength (nm)': 'wavelength'})
@@ -50,7 +51,7 @@ def read_fit_spectra(spectra_path, wavelengths, plot=False, spectra_noise_thresh
     if plot == True:
         print('Plotting not supported here yet.')
 
-    numpy2ri.deactivate()
+    # numpy2ri.deactivate() removed - deprecated in newer rpy2 versions
 
     return(scaled_emission_spectra)
 
